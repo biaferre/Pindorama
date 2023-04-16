@@ -26,7 +26,7 @@ struct ContentView: View {
     
     var body: some View {
         if gameManager.pageNumber == 0 {
-            GameView().environmentObject(gameManager)
+            MenuView().environmentObject(gameManager)
         }
     
     }

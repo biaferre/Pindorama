@@ -11,7 +11,7 @@ struct PuzzleBlockView: View {
     // block view
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 4)
+            RoundedRectangle(cornerRadius: 12)
                 .fill(Color.white)
             Text("\(number)")
                 .foregroundColor(.green)
@@ -19,7 +19,7 @@ struct PuzzleBlockView: View {
                 .fontWeight(.bold)
         }
         .rotationEffect(.degrees(rotationAngle))
-        .frame(width: 124, height: 124)
+        .frame(width: 220, height: 220)
         .shadow(radius: 5)
         .onTapGesture {
             withAnimation {

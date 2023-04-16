@@ -21,14 +21,14 @@ struct MainButton: View {
         ZStack {
             Text(text)
                 .font(Font(getFont(.hecho)))
-                .foregroundColor(.white)
+                .foregroundColor(state.self == .secondary ? .black : .white)
                 .padding(.bottom, 12)
                 .padding(.top, 12)
                 .padding(.leading, 56)
                 .padding(.trailing, 56)
 
-        }.background(state.self == .secondary ? .white : .blue)
-            .border(.blue)
+        }.background((state.self == .secondary ? .clear : Color("myblue")))
+            .border(Color("myblue"))
             .cornerRadius(8)
     }
 }
