@@ -47,7 +47,7 @@ struct GameView: View {
                 InfoOverlay(infoNum: gameManager.currentInfo).opacity(gameManager.isInfoShowing ? 1 : 0)
                     .animation(.easeInOut)
                     .offset(x: 80)
-                EndingOverlay().opacity(gameManager.matches == [true, true, true, true, true, true, true, true, true] ? 1.0 : 0.0)
+                EndingOverlay().opacity(gameManager.checkMatch() ? 1.0 : 0.0)
                     .animation(.easeInOut)
             })
         }

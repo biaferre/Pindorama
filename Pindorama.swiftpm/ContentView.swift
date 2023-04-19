@@ -25,7 +25,10 @@ struct ContentView: View {
      }
     
     var body: some View {
-            MenuView().environmentObject(gameManager)
+            MenuView()
+            .environmentObject(gameManager)
+            .frame(maxWidth: 2560, maxHeight: 1600)
+            .background(Color("grey"))
     }
 }
 

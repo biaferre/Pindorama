@@ -8,4 +8,12 @@ class GameManager: ObservableObject {
     ]
     @Published var isInfoShowing: Bool = false
     @Published var currentInfo: Int = 0
+    
+    func checkMatch() -> Bool {
+        var checker: Bool = false
+        for element in matches {
+            checker = element
+        }
+        return checker
+    }
 }
