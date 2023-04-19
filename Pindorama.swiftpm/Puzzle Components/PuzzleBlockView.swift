@@ -10,16 +10,17 @@ struct PuzzleBlockView: View {
     
     // block view
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color.white)
-            Text("\(number)")
-                .foregroundColor(.green)
-                .font(.largeTitle)
-                .fontWeight(.bold)
+        ZStack(alignment: .center) {
+            Image("\(number)-frame")
+                .resizable()
+                .cornerRadius(14.67)
+                .frame(width: 280, height: 280)
+
+
+
         }
         .rotationEffect(.degrees(rotationAngle))
-        .frame(width: 220, height: 220)
+        .frame(width: 280, height: 280)
         .shadow(radius: 5)
         .onTapGesture {
             withAnimation {
@@ -34,9 +35,18 @@ struct PuzzleBlockView: View {
     private func checkIfUpright() {
         if rotationAngle.truncatingRemainder(dividingBy: 360) == 0 {
             gameManager.matches[number - 1] = true
+            if (number % 2 != 0) {
+                gameManager.isInfoShowing.toggle()
+                gameManager.currentInfo = (number - 1)/2
+            }
         }
         else {
+            gameManager.isInfoShowing = false
             gameManager.matches[number - 1] = false
         }
+    }
+    
+    private func getBlockNum(_ number: Int) -> Int {
+        return number
     }
 }

@@ -2,7 +2,8 @@ import SwiftUI
 
 struct GameView: View {
     @State var model = PuzzleModel()
-    @State var helpIsActive = false
+    @State var helpIsActive = true
+
     
     @Environment(\.dismiss) var dismiss
     
@@ -23,8 +24,16 @@ struct GameView: View {
                 }
                 
                 ZStack {
+                    VStack(alignment: .center) {
+                        PuzzleBoardView(model: $model)
+                        VStack(spacing: 20) {
+                            NavigationLink(destination: {CreditView()}, label: {
+                                MainButton(text: "behind pindorama", state: .primary)
+                            })
+                        }.padding(20)
+                    }
                     GeometryReader { geometry in
-                        HelpOverlay()
+                        helpOverlay
                             .onTapGesture {
                                 withAnimation(.easeInOut(duration: 0.6)) {
                                     helpIsActive.toggle()
@@ -32,25 +41,14 @@ struct GameView: View {
                             }
                             .offset(x: helpIsActive ? 0 : -(geometry.size.width * 0.2), y: +(geometry.size.height/8))
                     }
-                    VStack(alignment: .center) {
-                        PuzzleBoardView(model: $model)
-                        VStack(spacing: 20) {
-                            Button(action: {}, label: {
-                                MainButton(text: "SHUFFLE", state: .primary
-                                )
-                            })
-                            NavigationLink(destination: {CreditView()}, label: {
-                                Text("credits")
-                                    .font(Font(getFont(.louis)))
-                                    .foregroundColor(Color("myblue"))
-                                    .animation(.linear(duration: 1.0))
-                            })
-                        }.padding(.top, 56)
-                    }
                 }
-            }.background(Color(""))
+            }.background(Color("grey"))
             .overlay(content: {
+                InfoOverlay(infoNum: gameManager.currentInfo).opacity(gameManager.isInfoShowing ? 1 : 0)
+                    .animation(.easeInOut)
+                    .offset(x: 80)
                 EndingOverlay().opacity(gameManager.matches == [true, true, true, true, true, true, true, true, true] ? 1.0 : 0.0)
+                    .animation(.easeInOut)
             })
         }
             .navigationBarHidden(true)

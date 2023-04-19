@@ -2,10 +2,8 @@ import SwiftUI
 
 struct PuzzleBoardView: View {
     @Binding var model: PuzzleModel
-    @EnvironmentObject var gameManager: GameManager
-    
-    @State var allBlocksMatched = false
-    
+        @EnvironmentObject var gameManager: GameManager
+        
     
     let initialAngle: [Double] = [90, 180, 270]
     

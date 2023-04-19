@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 
-enum ButtonState {
+enum ButtonState { // INITIALLY the app would have a secondary button, yet in the final
+                    // implementation it ended up not being necessary
     case primary, secondary
 }
 
@@ -27,7 +28,7 @@ struct MainButton: View {
                 .padding(.leading, 56)
                 .padding(.trailing, 56)
 
-        }.background((state.self == .secondary ? .clear : Color("myblue")))
+        }.background((state.self == .secondary ? .white : Color("myblue")))
             .border(Color("myblue"))
             .cornerRadius(8)
     }

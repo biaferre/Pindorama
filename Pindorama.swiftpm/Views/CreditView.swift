@@ -11,27 +11,43 @@ import SwiftUI
 struct CreditView: View {
     @Environment(\.dismiss) var dismiss
     
-    let creditText = "  i feel immense tenderness for the people and the country i grew in, and thats where the idea for this project came from. its only fitting, then, that the credits session is almost as long as the experience itself!\n\n much credit is due to the amazing, insanely creative people i grow with side by side at my academy in Brazil. but i must also credit my non-academyfriends and my beautiful family, who teach me daily the love and wisdom of the brazilian way of life.\n\n it doesn’t end there! much, much thanks to everyone who creates art, does work or studies things in latin-america countries; all of you inspire me daily. we have a fire within us we must share with the rest of the world!\n\n  last, but definitely not least, i thank my wonderful girlfriend for believing in me throughout everything i try to do, even when i can’t."
+    @State var blockController: Bool = false
+    
+    let creditText = "  I feel immense tenderness for the people and the country I was born and raised in, Brazil, or Pindorama. thats where the idea for this project came from. I see that tropical countries such as Brazil tend to be painted in a very specific light in media: they have lots of biodiversity, some football, and... that’s all. lots of the country’s scientific, artistic and popular contributions go overlooked.\n\nI fully believe that we should all be more curious about each other's culture, about how the other thinks, why they think that... curiosity and empathy are keys for a better world. as much as I love learning about other cultures, I love sharing knowledge about mine!\n\n and with that spirit of looking beyond stereotypes, this projects aims to show you another side of Brazil! join this colourful short experience to explore a Brazil beyond what meets the eye."
 
     var body: some View {
         ScrollView {
-            VStack {
-                HStack {
-                    Button(action: {dismiss.callAsFunction()
-                    }, label: {
-                        NavigationButton(text: "back to menu", isNext: false)
-                            .padding(.top, 52)
-                        .padding(.leading, 92)})
-                    
-                    Spacer()
+            HStack {
+                VStack {
+                    HStack {
+                        Button(action: {dismiss.callAsFunction()
+                        }, label: {
+                            NavigationButton(text: "back to game", isNext: false)
+                                .padding(.top, 52)
+                            .padding(.leading, 92)})
+                        
+                        Spacer()
+                    }
+                    VStack(alignment: .leading, spacing: 56) {
+                        Image("pindorama-definition")
+//                            .resizable()
+//                            .frame(width: 418, height: 191.48)
+                        Text(creditText)
+                            .font(Font(getFont(.louis)))
+                            .frame(width: 834)
+                            .opacity(blockController ? 1 : 0)
+                            .animation(.easeInOut)
+                    }
                 }
-                Text(" credits ")
-                    .font(Font(getFont(.bimboBig)))
-                Text(creditText)
-                    .font(Font(getFont(.louis)))
-                    .frame(width: 834)
             }
         }.background(Color("myblue"))
             .navigationBarBackButtonHidden(true)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                    withAnimation {
+                        blockController = true
+                    }
+                }
+            }
     }
 }

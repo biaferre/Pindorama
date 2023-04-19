@@ -10,7 +10,10 @@ import SwiftUI
 
 struct EndingOverlay: View {
     @State var isVisible: Bool = true
+    @Environment(\.dismiss) var dismiss
+
     @EnvironmentObject var gameManager: GameManager
+    
     
     
     var body: some View {
@@ -38,9 +41,7 @@ struct EndingOverlay: View {
                     }
                 }.position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
             }
-        }
-        .opacity(isVisible ? 1.0 : 0.0)
+        }.opacity(isVisible ? 1.0 : 0.0)
             .animation(.easeIn)
     }
 }
-

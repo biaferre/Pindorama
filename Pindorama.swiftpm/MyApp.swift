@@ -8,9 +8,7 @@ struct MyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if gameManager.pageNumber == 0 {
                 ContentView().environmentObject(gameManager)
-            }
         }
     }
 }
