@@ -10,8 +10,6 @@ import SwiftUI
 
 extension GameView {
     
-    //    @State var helpIsActive: Bool
-    
     var helpOverlay: some View {
         HStack(alignment: .top, spacing: 0) {
             HStack(alignment: .top) {
@@ -44,19 +42,8 @@ extension GameView {
                             .frame(width: 66)
                     }
                 }
-                //                Text("click to toggle")
-                //                .font(Font(getFont(.louisSmall)))
-                //                .foregroundColor(.gray)
-                //                .offset(x: 20)
-                //                }
                 
             }
         }
     }
 }
-//
-//struct HelpOverlay_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HelpOverlay()
-//    }
-//}

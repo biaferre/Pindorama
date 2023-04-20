@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-struct IntroViewModel: View {
+struct TextViewModel: View {
     var title: String
     var text: String
     

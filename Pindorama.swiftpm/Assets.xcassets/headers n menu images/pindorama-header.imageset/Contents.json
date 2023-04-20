@@ -1,16 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "fashion-symbol.png",
+      "filename" : "pindorama-header.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "fashion-symbol@2x.png",
+      "filename" : "pindorama-header@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "pindorama-header@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -1,3 +1,9 @@
+//
+//  GameManager.swift
+//  Pindorama
+//
+//  Created by Bof on 06/04/23.
+//
 import SwiftUI
 
 class GameManager: ObservableObject {
@@ -10,10 +16,6 @@ class GameManager: ObservableObject {
     @Published var currentInfo: Int = 0
     
     func checkMatch() -> Bool {
-        var checker: Bool = false
-        for element in matches {
-            checker = element
-        }
-        return checker
+        return matches == [true, true, true, true, true, true, true, true, true]
     }
 }

@@ -1,18 +1,27 @@
+//
+//  GameView.swift
+//  Pindorama
+//
+//  Created by Bof on 15/04/23.
+//
+
 import SwiftUI
+import AVKit
 
 struct GameView: View {
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var gameManager: GameManager
+
     @State var model = PuzzleModel()
     @State var helpIsActive = true
-
+    @State var audioPlayer: AVAudioPlayer!
     
-    @Environment(\.dismiss) var dismiss
-    
-    @EnvironmentObject var gameManager: GameManager
+    let helpSound = Bundle.main.path(forResource: "help-sound", ofType: "mp3")
     
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .center, spacing: 20) {
+            VStack(alignment: .center, spacing: 12) {
                 HStack {
                     Button(action: {dismiss.callAsFunction()
                     }, label: {
@@ -28,13 +37,17 @@ struct GameView: View {
                         PuzzleBoardView(model: $model)
                         VStack(spacing: 20) {
                             NavigationLink(destination: {CreditView()}, label: {
-                                MainButton(text: "behind pindorama", state: .primary)
+                                MainButton(text: "behind pindorama")
                             })
-                        }.padding(20)
+                        }
+                        .padding(12)
                     }
                     GeometryReader { geometry in
                         helpOverlay
                             .onTapGesture {
+                                audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: helpSound!))
+                                self.audioPlayer.play()
+                                
                                 withAnimation(.easeInOut(duration: 0.6)) {
                                     helpIsActive.toggle()
                                 }
@@ -45,10 +58,10 @@ struct GameView: View {
             }.background(Color("grey"))
             .overlay(content: {
                 InfoOverlay(infoNum: gameManager.currentInfo).opacity(gameManager.isInfoShowing ? 1 : 0)
-                    .animation(.easeInOut)
+                    .animation(.easeInOut, value: gameManager.checkMatch())
                     .offset(x: 80)
                 EndingOverlay().opacity(gameManager.checkMatch() ? 1.0 : 0.0)
-                    .animation(.easeInOut)
+                    .animation(.easeInOut, value: gameManager.checkMatch())
             })
         }
             .navigationBarHidden(true)

@@ -20,7 +20,7 @@ struct MenuView: View {
                         .foregroundColor(.white)
                     
                     NavigationLink(destination: GameView().navigationBarHidden(true), label: {
-                        MainButton(text: "START!", state: .primary)
+                        MainButton(text: "START!")
                     })
                 }
                 Image("arara")

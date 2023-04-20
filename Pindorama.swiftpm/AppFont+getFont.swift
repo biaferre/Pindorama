@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 enum AppFont {
-    case bimboBig, bimboSmall, louis, hecho, louisSmall, louisVerySmall //, .aloja
+    case bimboBig, bimboSmall, louis, hecho, louisSmall, louisVerySmall
 }
 
 func getFont(_ font: AppFont) -> UIFont {
